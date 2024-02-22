@@ -7,7 +7,7 @@ jobs:
   test:
     strategy:
       matrix:
-        branch: [v2.0.1]
+        branch: [fix/reference_provider2]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +25,7 @@ jobs:
       - name: Checkout sdc11073
         uses: actions/checkout@v3
         with:
-          repository: draegerwerk/sdc11073
+          repository: a-kleinf/sdc11073
           ref: ${{ matrix.branch }}
           path: sdc11073_git
       - name: Install sdc11073
