@@ -2,15 +2,12 @@ name: Run ri consumer against sdc11073 provider
 
 on:
   push:
-  schedule:
-    # run every morning at 05:00 UTC
-    - cron:  '0 5 * * *'
 
 jobs:
   test:
     strategy:
       matrix:
-        branch: [v1.x.y, master]
+        branch: [v2.0.1]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +22,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Checkout sdc11073 1.1.x
+      - name: Checkout sdc11073
         uses: actions/checkout@v3
         with:
           repository: draegerwerk/sdc11073
