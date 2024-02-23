@@ -3,6 +3,9 @@
 ip addr
 echo ref_ip is "${ref_ip}"
 
+export ref_ca=$(pwd)/certs
+export ref_ssl_passwd=dummypass
+
 echo "Starting SDCri provider"
 (cd ri && sleep 999999999 | mvn -Pprovider -Pallow-snapshots exec:java) &
 sleep 30
