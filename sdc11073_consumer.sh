@@ -7,7 +7,7 @@ export ref_ca=$(pwd)/certs
 export ref_ssl_passwd=dummypass
 
 echo "Starting SDCri provider"
-(cd ri && sleep 999999999 | mvn -Pprovider -Pallow-snapshots exec:java) &
+(cd ri && sleep 999999999 | mvn -Pprovider-tls -Pallow-snapshots exec:java) &
 sleep 30
 echo "Starting sdc11073 consumer"
 cd sdc11073_git && python3 -m unittest examples.ReferenceTest.test_reference.Test_Reference.test_client_connects
