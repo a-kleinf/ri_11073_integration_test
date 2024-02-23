@@ -11,9 +11,15 @@ if [ "${args[0]}" == "true" ]; then
 fi
 export ref_search_epr=""
 
-echo "Starting SDCri provider"
+if [ "${args[0]}" == "true" ]; then
+echo "Starting SDCri provider with TLS"
 (cd ri && sleep 999999999 | mvn -Pprovider-tls -Pallow-snapshots exec:java) &
+else
+echo "Starting SDCri provider without TLS"
+(cd ri && sleep 999999999 | mvn -Pprovider -Pallow-snapshots exec:java) &
+fi
 sleep 20
+
 cd sdc11073_git 
 echo "Starting sdc11073 consumer reference_consumer"
 python3 -m examples.ReferenceTest.reference_consumer; ((test_exit_code = $?))
