@@ -1,10 +1,15 @@
 #!/bin/bash
 
+echo arg1 is "${args[0]}"
+echo arg2 is "${args[1]}"
+
 ip addr
 echo ref_ip is "${ref_ip}"
 
-export ref_ca=$(pwd)/certs
-export ref_ssl_passwd=dummypass
+if [ "${args[1]}" == "true" ]; then
+    export ref_ca=$(pwd)/certs
+    export ref_ssl_passwd=dummypass
+fi
 export ref_search_epr=""
 
 echo "Starting SDCri provider"

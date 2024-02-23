@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         branch: [fix/reference_provider2]
+        tls_enable: [true, false]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
@@ -33,4 +34,4 @@ jobs:
           python -m pip install -e ./sdc11073_git
       - name: Run test
         run: |
-          ./sdc11073_consumer.sh ${{ matrix.branch }}
+          ./sdc11073_consumer.sh ${{ matrix.branch }} ${{ matrix.tls_enable }}
