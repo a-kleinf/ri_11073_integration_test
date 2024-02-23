@@ -41,6 +41,7 @@
                             <mainClass>com.example.consumer1.ConsumerIT</mainClass>
                             <arguments>
                                 <argument>--epr=urn:uuid:12345678-6f55-11ea-9697-123456789abc</argument>
+                                <argument>--no_tls</argument>
                             </arguments>
                         </configuration>
                     </plugin>
@@ -93,6 +94,10 @@
                         </executions>
                         <configuration>
                             <mainClass>com.example.provider1.Provider</mainClass>
+                            <arguments>
+                                <argument>--no_tls</argument>
+                                <argument>--epr=urn:uuid:12345678-6f55-11ea-9697-123456781abc</argument>
+                            </arguments>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -120,6 +125,7 @@
                                 <argument>--userkey=../certs/userkey.pem</argument>
                                 <argument>--cacert=../certs/cacert.pem</argument>
                                 <argument>--userkey_password=dummypass</argument>
+                                <argument>--epr=urn:uuid:12345678-6f55-11ea-9697-123456781abc</argument>
                             </arguments>
                         </configuration>
                     </plugin>
