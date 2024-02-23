@@ -5,6 +5,7 @@ echo ref_ip is "${ref_ip}"
 
 export ref_ca=$(pwd)/certs
 export ref_ssl_passwd=dummypass
+export ref_search_epr=""
 
 echo "Starting SDCri provider"
 (cd ri && sleep 999999999 | mvn -Pprovider-tls -Pallow-snapshots exec:java) &
