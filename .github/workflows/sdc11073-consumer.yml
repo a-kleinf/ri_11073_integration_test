@@ -34,4 +34,4 @@ jobs:
           python -m pip install -e ./sdc11073_git
       - name: Run test
         run: |
-          ./sdc11073_consumer.sh ${{ matrix.branch }} ${{ matrix.tls_enable }}
+          ./sdc11073_consumer.sh ${{ matrix.tls_enable }}

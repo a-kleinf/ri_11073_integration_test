@@ -1,12 +1,11 @@
 #!/bin/bash
 
-echo arg1 is "${args[0]}"
-echo arg2 is "${args[1]}"
+echo Flag indicating to use TLS is "${args[0]}"
 
 ip addr
 echo ref_ip is "${ref_ip}"
 
-if [ "${args[1]}" == "true" ]; then
+if [ "${args[0]}" == "true" ]; then
     export ref_ca=$(pwd)/certs
     export ref_ssl_passwd=dummypass
 fi
