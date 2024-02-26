@@ -7,7 +7,7 @@ jobs:
   test:
     strategy:
       matrix:
-        branch: [fix/reference_tests]
+        branch: [6caff03366f84ada27f6dc24a8ca4321b2f1de2a]
         tls_enable: [true, false]
       fail-fast: false
     runs-on: ubuntu-latest
