@@ -10,6 +10,8 @@ if [ "${args[0]}" == "true" ]; then
     export ref_ssl_passwd=dummypass
 fi
 export ref_search_epr=""
+# EXTERNAL_DEVICE_RUNNING="true" indicates unittest in sdc11073 that an external SDC Provider is started
+export EXTERNAL_DEVICE_RUNNING="true"
 
 if [ "${args[0]}" == "true" ]; then
 echo "Starting SDCri provider with TLS"
