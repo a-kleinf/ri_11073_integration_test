@@ -7,7 +7,7 @@ jobs:
   test:
     strategy:
       matrix:
-        branch: [fix/reference_provider2]
+        branch: [fix/reference_tests]
         tls_enable: [true, false]
       fail-fast: false
     runs-on: ubuntu-latest
