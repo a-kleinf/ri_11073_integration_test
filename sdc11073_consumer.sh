@@ -10,7 +10,7 @@ if [ "${args[0]}" == "true" ]; then
     export ref_ssl_passwd=dummypass
 fi
 export ref_search_epr=""
-# ref_discovery_runs defines the maximal executions of searching services by sdc11073 wsdiscovery
+# ref_discovery_runs defines the maximum executions of searching services via sdc11073 wsdiscovery
 export ref_discovery_runs="20"
 # EXTERNAL_DEVICE_RUNNING="true" indicates unittest in sdc11073 that an external SDC Provider is started
 export EXTERNAL_DEVICE_RUNNING="true"
