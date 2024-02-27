@@ -20,10 +20,10 @@ export EXTERNAL_DEVICE_RUNNING="true"
 
 if [ "${args[0]}" == "true" ]; then
 echo "Starting SDCri provider with TLS"
-(cd ri && sleep 999999999 | mvn -Pprovider-tls -Pallow-snapshots exec:java) &
+(cd ri && sleep 999999999 | mvn -Dsdcri-version=5.1.1 -Pprovider-tls -Pallow-snapshots exec:java) &
 else
 echo "Starting SDCri provider without TLS"
-(cd ri && sleep 999999999 | mvn -Pprovider -Pallow-snapshots exec:java) &
+(cd ri && sleep 999999999 | mvn -Dsdcri-version=5.1.1 -Pprovider -Pallow-snapshots exec:java) &
 fi
 sleep 20
 

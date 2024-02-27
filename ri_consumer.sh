@@ -22,10 +22,10 @@ python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
 
 if [ "${args[0]}" == "true" ]; then
 echo "Starting SDCri consumer with TLS"
-cd ri && mvn -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))
+cd ri && mvn -Dsdcri-version=5.1.1 -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))
 else
 echo "Starting SDCri consumer without TLS"
-cd ri && mvn -Pconsumer -Pallow-snapshots exec:java; ((test_exit_code = $?))
+cd ri && mvn -Dsdcri-version=5.1.1 -Pconsumer -Pallow-snapshots exec:java; ((test_exit_code = $?))
 fi
 
 echo "Terminating sdc11073 provider"

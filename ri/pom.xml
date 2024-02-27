@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.somda.sdc</groupId>
             <artifactId>glue-examples</artifactId>
-            <version>5.1.1</version>
+            <version>${sdcri-version}</version>
         </dependency>
     </dependencies>
 
