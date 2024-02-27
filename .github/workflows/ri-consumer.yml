@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         branch: [master]
+        sdcri_version: ["5.1.1", "6.0.0-SNAPSHOT"]
         tls_enable: [true, false]
       fail-fast: false
     runs-on: ubuntu-latest
@@ -34,4 +35,4 @@ jobs:
           python -m pip install -e ./sdc11073_git
       - name: Run test
         run: |
-          ./ri_consumer.sh ${{ matrix.tls_enable }}
+          ./ri_consumer.sh ${{ matrix.sdcri_version }} ${{ matrix.tls_enable }}

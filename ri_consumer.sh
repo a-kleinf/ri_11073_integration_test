@@ -1,8 +1,8 @@
 #!/bin/bash
 
 args=("$@")
-
-echo Flag indicating to use TLS is "${args[0]}"
+echo sdcri-version is "${args[0]}"
+echo flag indicating to use TLS is "${args[1]}"
 
 ip addr
 echo ref_ip is "${ref_ip}"
@@ -22,10 +22,10 @@ python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
 
 if [ "${args[0]}" == "true" ]; then
 echo "Starting SDCri consumer with TLS"
-cd ri && mvn -Dsdcri-version=5.1.1 -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))
+cd ri && mvn -Dsdcri-version=${args[0]} -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))
 else
 echo "Starting SDCri consumer without TLS"
-cd ri && mvn -Dsdcri-version=5.1.1 -Pconsumer -Pallow-snapshots exec:java; ((test_exit_code = $?))
+cd ri && mvn -Dsdcri-version=${args[0]} -Pconsumer -Pallow-snapshots exec:java; ((test_exit_code = $?))
 fi
 
 echo "Terminating sdc11073 provider"
