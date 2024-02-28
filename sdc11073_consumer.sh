@@ -6,7 +6,7 @@ echo flag indicating to use TLS is "${args[1]}"
 ip addr
 echo ref_ip is "${ref_ip}"
 
-if [ "${args[0]}" == "true" ]; then
+if [ "${args[1]}" == "true" ]; then
     export ref_ca=$(pwd)/certs
     export ref_ssl_passwd=dummypass
 fi

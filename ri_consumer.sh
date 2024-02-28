@@ -10,7 +10,7 @@ echo ref_ip is "${ref_ip}"
 export ref_fac="theFacility"
 export ref_bed="comfyBed"
 export ref_poc="noPoint"
-if [ "${args[0]}" == "true" ]; then
+if [ "${args[1]}" == "true" ]; then
 export ref_ca=$(pwd)/certs
 export ref_ssl_passwd=dummypass
 fi
@@ -20,7 +20,7 @@ echo "Starting sdc11073 provider"
 python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
 
 
-if [ "${args[0]}" == "true" ]; then
+if [ "${args[1]}" == "true" ]; then
 echo "Starting SDCri consumer with TLS"
 cd ri && mvn -Dsdcri-version=${args[0]} -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))
 else
