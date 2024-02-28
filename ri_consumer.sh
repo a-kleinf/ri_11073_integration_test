@@ -19,7 +19,6 @@ echo "Starting sdc11073 provider"
 
 python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
 
-
 if [ "${args[1]}" == "true" ]; then
 echo "Starting SDCri consumer with TLS"
 cd ri && mvn -Dsdcri-version=${args[0]} -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))

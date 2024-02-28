@@ -16,9 +16,6 @@ export ref_discovery_runs="20"
 # EXTERNAL_DEVICE_RUNNING="true" indicates unittest in sdc11073 that an external SDC Provider is started
 export EXTERNAL_DEVICE_RUNNING="true"
 
- 
-
-
 if [ "${args[1]}" == "true" ]; then
 echo "Starting SDCri provider with TLS"
 (cd ri && sleep 999999999 | mvn -Dsdcri-version=${args[0]} -Pprovider-tls -Pallow-snapshots exec:java) &
