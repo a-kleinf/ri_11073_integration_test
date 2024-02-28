@@ -1,4 +1,5 @@
 #!/bin/bash
+args=("$@")
 echo sdcri-version is "${args[0]}"
 echo flag indicating to use TLS is "${args[1]}"
 
