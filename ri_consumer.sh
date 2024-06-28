@@ -17,7 +17,7 @@ fi
 
 echo "Starting sdc11073 provider"
 
-python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
+python3 sdc11073_git/examples/ReferenceTest/reference_device.py &
 
 if [ "${args[1]}" == "true" ]; then
 echo "Starting SDCri consumer with TLS"
