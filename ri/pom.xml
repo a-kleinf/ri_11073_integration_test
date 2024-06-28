@@ -66,7 +66,7 @@
                         <configuration>
                             <mainClass>com.example.consumer1.ConsumerIT</mainClass>
                             <arguments>
-                                <argument>--usercert=../certs/usercert.pem</argument>
+                                <argument>--usercert=../certs/sdccert.pem</argument>
                                 <argument>--userkey=../certs/userkey.pem</argument>
                                 <argument>--cacert=../certs/cacert.pem</argument>
                                 <argument>--userkey_password=dummypass</argument>
@@ -121,7 +121,7 @@
                         <configuration>
                             <mainClass>com.example.provider1.Provider</mainClass>
                             <arguments>
-                                <argument>--usercert=../certs/usercert.pem</argument>
+                                <argument>--usercert=../certs/sdccert.pem</argument>
                                 <argument>--userkey=../certs/userkey.pem</argument>
                                 <argument>--cacert=../certs/cacert.pem</argument>
                                 <argument>--userkey_password=dummypass</argument>
