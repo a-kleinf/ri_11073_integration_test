@@ -7,7 +7,7 @@ jobs:
   test:
     strategy:
       matrix:
-        branch: ["v1.3.0"]
+        branch: ["v1.3.2"]
         sdcri_version: ["5.0.0"]
         tls_enable: [true, false]
       fail-fast: false
