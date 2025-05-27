@@ -9,8 +9,7 @@
     <artifactId>ri</artifactId>
 
     <properties>
-        <junitVersion>5.6.1</junitVersion>
-        <junitPlatformVersion>1.6.1</junitPlatformVersion>
+        <junitVersion>5.11.2</junitVersion>
     </properties>
 
     <dependencies>
