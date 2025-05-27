@@ -23,7 +23,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junitVersion}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
