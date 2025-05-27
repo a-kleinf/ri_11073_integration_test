@@ -19,6 +19,12 @@
             <artifactId>glue-examples</artifactId>
             <version>${sdcri-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junitVersion}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
