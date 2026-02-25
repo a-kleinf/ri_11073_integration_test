@@ -7,18 +7,18 @@ jobs:
   test:
     strategy:
       matrix:
-        branch: ["v1.3.2"]
-        sdcri_version: ["6.2.2"]
+        branch: ["v1.3.3"]
+        sdcri_version: ["7.0.0"]
         tls_enable: [true, false]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up Python 3.10
+      - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.12'
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
