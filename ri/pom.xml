@@ -8,11 +8,6 @@
     <version>0.0.3</version>
     <artifactId>ri</artifactId>
 
-    <properties>
-        <junitVersion>5.6.1</junitVersion>
-        <junitPlatformVersion>1.6.1</junitPlatformVersion>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.somda.sdc</groupId>
