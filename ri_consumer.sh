@@ -4,20 +4,13 @@ args=("$@")
 echo sdcri-version is "${args[0]}"
 echo flag indicating to use TLS is "${args[1]}"
 
-ip addr
-echo ref_ip is "${ref_ip}"
-
-export ref_fac="theFacility"
-export ref_bed="comfyBed"
-export ref_poc="noPoint"
 if [ "${args[1]}" == "true" ]; then
-export ref_ca=$(pwd)/certs
-export ref_ssl_passwd=dummypass
+echo "Starting sdc11073 provider with TLS"
+python3 sdc11073_git/pat/provider.py -Dadapter=127.0.0.1 -Depr=urn:uuid:12345678-6f55-11ea-9697-123456789abc -Dcertificate-folder=$(pwd)/certs -Dpassword=dummypass &
+else
+echo "Starting sdc11073 provider without TLS"
+python3 sdc11073_git/pat/provider.py -Dadapter=127.0.0.1 -Depr=urn:uuid:12345678-6f55-11ea-9697-123456789abc &
 fi
-
-echo "Starting sdc11073 provider"
-
-python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
 
 if [ "${args[1]}" == "true" ]; then
 echo "Starting SDCri consumer with TLS"

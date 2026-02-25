@@ -10,11 +10,6 @@ if [ "${args[1]}" == "true" ]; then
     export ref_ca=$(pwd)/certs
     export ref_ssl_passwd=dummypass
 fi
-export ref_search_epr=""
-# ref_discovery_runs defines the maximum executions of searching services via sdc11073 wsdiscovery
-export ref_discovery_runs="20"
-# EXTERNAL_DEVICE_RUNNING="true" indicates unittest in sdc11073 that an external SDC Provider is started
-export EXTERNAL_DEVICE_RUNNING="true"
 
 if [ "${args[1]}" == "true" ]; then
 echo "Starting SDCri provider with TLS"
