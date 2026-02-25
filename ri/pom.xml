@@ -8,11 +8,20 @@
     <version>0.0.3</version>
     <artifactId>ri</artifactId>
 
+    <properties>
+        <junitVersion>5.14.2</junitVersion>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.somda.sdc</groupId>
             <artifactId>glue-examples</artifactId>
             <version>${sdcri-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junitVersion}</version>
         </dependency>
     </dependencies>
 
