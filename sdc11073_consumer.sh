@@ -23,24 +23,21 @@ else
 echo "Starting SDCri provider without TLS"
 (cd ri && sleep 999999999 | mvn -Dsdcri-version=${args[0]} -Pprovider -Pallow-snapshots exec:java) &
 fi
-sleep 20
+sleep 10
 
 cd sdc11073_git 
-#echo "Starting sdc11073 consumer reference_consumer"
-#python3 -m pat.ReferenceTest.reference_consumer; ((test_exit_code = $?))
-#echo "Starting sdc11073 consumer test_client_connects"
-#python3 -m unittest pat.ReferenceTest.test_reference.Test_Reference.test_client_connects; ((test_exit_code = test_exit_code || $?))
-
-echo "Starting sdc11073 consumer reference_consumer_v2"
-python3 -m pat.ReferenceTestV2.reference_consumer_v2; ((test_exit_code = $?))
+echo "Starting sdc11073 consumer reference_consumer"
+python3 -m pat.ReferenceTest.reference_consumer; ((test_exit_code = $?))
+echo "Starting sdc11073 consumer test_client_connects"
+python3 -m unittest pat.ReferenceTest.test_reference.Test_Reference.test_client_connects; ((test_exit_code = test_exit_code || $?))
 
 echo "Terminating SDCri provider"
 jobs && kill %1
 
 if [ "$test_exit_code" -eq 0 ]; then
-  echo "All tests successful (Exit code: $test_exit_code)"
+  echo "ALL TESTS PASSED (Exit code: $test_exit_code)"
 else
-  echo "Error during testing (Exit code: $test_exit_code)"
+  echo "TESTS FAILED (Exit code: $test_exit_code)"
 fi
 
 exit "$test_exit_code"

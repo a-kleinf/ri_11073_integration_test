@@ -32,9 +32,9 @@ jobs && kill %1
 pkill -f sdc11073
 
 if [ "$test_exit_code" -eq 0 ]; then
-  echo "All tests successful (Exit code: $test_exit_code)"
+  echo "ALL TESTS PASSED (Exit code: $test_exit_code)"
 else
-  echo "Error during testing (Exit code: $test_exit_code)"
+  echo "TESTS FAILED (Exit code: $test_exit_code)"
 fi
 
 exit "$test_exit_code"
