@@ -31,4 +31,10 @@ echo "Terminating sdc11073 provider"
 jobs && kill %1
 pkill -f sdc11073
 
+if [ "$test_exit_code" -eq 0 ]; then
+  echo "All tests successful (Exit code: $test_exit_code)"
+else
+  echo "Error during testing (Exit code: $test_exit_code)"
+fi
+
 exit "$test_exit_code"
