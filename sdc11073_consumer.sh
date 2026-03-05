@@ -39,5 +39,4 @@ if [ "$test_exit_code" -eq 0 ]; then
 else
   echo "TESTS FAILED (Exit code: $test_exit_code)"
 fi
-
 exit "$test_exit_code"
