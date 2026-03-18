@@ -1,0 +1,23 @@
+[provider]
+epr = "urn:uuid:12345678-6f55-11ea-9697-123456789abc"
+address = "127.0.0.1"
+writeCommlog = false
+[provider.tls]
+disableTls = true
+publicKeyFile = "**\\participant_public.pem"
+privateKeyFile = "**\\participant_private.pem"
+caCertFile = "**\\ca_certificate.pem"
+privateKeyPassword = "dummypass"
+[provider.updateTimes]
+descriptionUpdateIntervalInMillis = 10000
+
+[consumer]
+epr = "urn:uuid:12345678-6f55-11ea-9697-123456789abc"
+address = "127.0.0.1"
+writeCommlog = true
+[consumer.tls]
+disableTls = true
+publicKeyFile = "**\\user_certificate_root_signed.pem"
+privateKeyFile = "**\\user_private_key_encrypted.pem"
+caCertFile = "**\\root_certificate.pem"
+privateKeyPassword = "dummypass"

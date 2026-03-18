@@ -1,34 +1,49 @@
 #!/bin/bash
 
 args=("$@")
-echo sdcri-version is "${args[0]}"
-echo flag indicating to use TLS is "${args[1]}"
+echo flag indicating to use TLS is "${args[0]}"
 
 ip addr
-echo ref_ip is "${ref_ip}"
+epr="urn:uuid:12345678-6f55-11ea-9697-123456789abc"
+ip_addr="127.0.0.1"
+cert_path="$(pwd)/certs"
+cert_passwd="dummypass"
 
-export ref_fac="theFacility"
-export ref_bed="comfyBed"
-export ref_poc="noPoint"
-if [ "${args[1]}" == "true" ]; then
-export ref_ca=$(pwd)/certs
-export ref_ssl_passwd=dummypass
-fi
-
-echo "Starting sdc11073 provider"
-
-python3 sdc11073_git/examples/ReferenceTest/reference_provider.py &
-
-if [ "${args[1]}" == "true" ]; then
-echo "Starting SDCri consumer with TLS"
-cd ri && mvn -Dsdcri-version=${args[0]} -Pconsumer-tls -Pallow-snapshots exec:java; ((test_exit_code = $?))
+sdc11073_path="$(pwd)/sdc11073_git"
+if [ "${args[0]}" == "true" ]; then
+  echo "Starting sdc11073 provider with TLS"
+  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --adapter $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd &
 else
-echo "Starting SDCri consumer without TLS"
-cd ri && mvn -Dsdcri-version=${args[0]} -Pconsumer -Pallow-snapshots exec:java; ((test_exit_code = $?))
+  echo "Starting sdc11073 provider without TLS"
+  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --adapter $ip_addr &
 fi
+
+if [ "${args[0]}" == "true" ]; then
+  echo "Starting sdpi consumer with TLS"
+  disableTls_value="false"
+else
+  echo "Starting sdpi consumer without TLS"
+  disableTls_value="true"
+fi
+
+config="$(mktemp --suffix=.toml)"
+cat > "$config" << EOF
+[consumer]
+epr = "$epr"
+address = "$ip_addr"
+writeCommlog = true
+[consumer.tls]
+disableTls = $disableTls_value
+publicKeyFile = "$cert_path/user_certificate_root_signed.pem"
+privateKeyFile = "$cert_path/user_private_key_encrypted.pem"
+caCertFile = "$cert_path/root_certificate.pem"
+privateKeyPassword = "$cert_passwd"
+EOF
+
+(cd sdpi_git && ./gradlew run -PchooseMain=org.somda.sdpi.test.v2.consumer.MainKt --args="--config ${config}"); test_exit_code=$?
 
 echo "Terminating sdc11073 provider"
 jobs && kill %1
-pkill -f sdc11073
+pkill -f pat.provider
 
 exit "$test_exit_code"
