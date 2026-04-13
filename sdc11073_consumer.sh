@@ -37,10 +37,10 @@ EOF
 cd sdc11073_git
 if [ "${args[0]}" == "true" ]; then
   echo "Starting sdc11073 consumer with TLS"
-  python3 -m pat.consumer --epr $epr --adapter $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd --timeout-ref-provider $timeout_ref_provider; ((test_exit_code = $?))
+  python3 -m pat.consumer --epr $epr --ip $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd --timeout-ref-provider $timeout_ref_provider; ((test_exit_code = $?))
 else
   echo "Starting sdc11073 consumer without TLS"
-  python3 -m pat.consumer --epr $epr --adapter $ip_addr --timeout-ref-provider $timeout_ref_provider; ((test_exit_code = $?))
+  python3 -m pat.consumer --epr $epr --ip $ip_addr --timeout-ref-provider $timeout_ref_provider; ((test_exit_code = $?))
 fi
 
 echo "Terminating SDCri provider"

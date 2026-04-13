@@ -12,10 +12,10 @@ cert_passwd="dummypass"
 sdc11073_path="$(pwd)/sdc11073_git"
 if [ "${args[0]}" == "true" ]; then
   echo "Starting sdc11073 provider with TLS"
-  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --adapter $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd &
+  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --ip $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd &
 else
   echo "Starting sdc11073 provider without TLS"
-  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --adapter $ip_addr &
+  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --ip $ip_addr &
 fi
 
 if [ "${args[0]}" == "true" ]; then
