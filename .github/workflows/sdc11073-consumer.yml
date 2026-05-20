@@ -2,6 +2,7 @@ name: Run sdc11073 consumer against ri provider
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   test:
