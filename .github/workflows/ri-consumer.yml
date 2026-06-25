@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         sdc11073_repo: [draegerwerk/sdc11073]
-        sdcpi_branch: [feature/pat_20]
+        sdcpi_branch: [feature/pat_20_wait_for_hellos]
         tls_enable: [true, false]
         include:
           - sdc11073_repo: draegerwerk/sdc11073
