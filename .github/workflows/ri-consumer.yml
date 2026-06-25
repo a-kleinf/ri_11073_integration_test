@@ -51,4 +51,4 @@ jobs:
 
       - name: Run test
         run: |
-          ./ri_consumer.sh ${{ matrix.tls_enable }}
+          ./ri_consumer_first.sh ${{ matrix.tls_enable }}
