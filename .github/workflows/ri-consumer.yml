@@ -13,7 +13,7 @@ jobs:
         tls_enable: [true, false]
         include:
           - sdc11073_repo: draegerwerk/sdc11073
-            sdc11073_branch: master
+            sdc11073_branch: v3.0.0
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +47,7 @@ jobs:
 
       - name: Checkout sdpi
         run: |
-          git clone --branch=${{ matrix.sdcpi_branch }} https://gitlab.com/sdc-suite/sdc-ri-adjuncts/sdpi.git sdpi_git
+          git clone --branch=${{ matrix.sdcpi_branch }} https://gitlab.com/a-kleinf/sdpi.git sdpi_git
 
       - name: Run test
         run: |
