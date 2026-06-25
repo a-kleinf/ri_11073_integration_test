@@ -10,13 +10,6 @@ cert_path="$(pwd)/certs"
 cert_passwd="dummypass"
 
 sdc11073_path="$(pwd)/sdc11073_git"
-if [ "${args[0]}" == "true" ]; then
-  echo "Starting sdc11073 provider with TLS"
-  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --ip $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd &
-else
-  echo "Starting sdc11073 provider without TLS"
-  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --ip $ip_addr &
-fi
 
 if [ "${args[0]}" == "true" ]; then
   echo "Starting sdpi consumer with TLS"
@@ -40,10 +33,25 @@ caCertFile = "$cert_path/root_certificate.pem"
 privateKeyPassword = "$cert_passwd"
 EOF
 
-(cd sdpi_git && ./gradlew run -PchooseMain=org.somda.sdpi.test.v2.consumer.MainKt --args="--config ${config}"); test_exit_code=$?
+# Start the sdpi consumer first, in the background, and remember its PID.
+(cd sdpi_git && ./gradlew run -PchooseMain=org.somda.sdpi.test.v2.consumer.MainKt --args="--config ${config}") &
+consumer_pid=$!
+
+sleep 90  # Wait for the consumer to initialize before starting the provider.
+
+# Then start the sdc11073 provider.
+if [ "${args[0]}" == "true" ]; then
+  echo "Starting sdc11073 provider with TLS"
+  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --ip $ip_addr --certificate-folder $cert_path --ssl-password $cert_passwd &
+else
+  echo "Starting sdc11073 provider without TLS"
+  PYTHONPATH=$sdc11073_path python3 -m pat.provider --epr $epr --ip $ip_addr &
+fi
+
+# Wait for the consumer to finish and capture its exit code.
+wait "$consumer_pid"; test_exit_code=$?
 
 echo "Terminating sdc11073 provider"
-jobs && kill %1
 pkill -f pat.provider
 
 exit "$test_exit_code"
