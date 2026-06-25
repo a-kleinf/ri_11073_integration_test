@@ -37,6 +37,8 @@ EOF
 (cd sdpi_git && ./gradlew run -PchooseMain=org.somda.sdpi.test.v2.consumer.MainKt --args="--config ${config}") &
 consumer_pid=$!
 
+sleep 30  # Wait for the consumer to initialize before starting the provider.
+
 # Then start the sdc11073 provider.
 if [ "${args[0]}" == "true" ]; then
   echo "Starting sdc11073 provider with TLS"
